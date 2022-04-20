@@ -16,11 +16,8 @@ calculatorButtons.forEach(button => {
     case 'CLS':
       func = () => clearDisplay();
       break;
-    case '=':
-      func = () => compute();
-      break;
     default:
-      func = () => addToDisplay(button.textContent);
+      func = () => handleSymbol(button.textContent);
   }
 
   button.addEventListener('click', func);
@@ -52,7 +49,17 @@ function operate(operation, num1, num2) {
 }
 
 function compute() {
+  let regex = new RegExp('(?=[/*\\-+])|(?<=[/*\\-+])');
+  let [num1, op, num2] = displayStr.split(regex);
+  num1 = parseFloat(num1);
+  num2 = parseFloat(num2);
 
+  switch (op) {
+    case '+': return operate(Operation.ADD, num1, num2);
+    case '-': return operate(Operation.SUBTRACT, num1, num2);
+    case '*': return operate(Operation.MULTIPLY, num1, num2);
+    case '/': return operate(Operation.DIVIDE, num1, num2);
+  }
 }
 
 function clearDisplay() {
@@ -60,10 +67,26 @@ function clearDisplay() {
   setDisplay(displayStr);
 }
 
-function addToDisplay(symbol) {
-  if (!displayStr) {
+function handleSymbol(symbol) {
+  if (symbol === '=') {
+    let result = compute();
+    displayStr = result.toString();
+    setDisplay(displayStr);
+    return;
+  }
+
+  if (/[/*\-+]/.test(symbol) && /[/*\-+]/.test(displayStr)) {
+    let result = compute();
+    displayStr = `${result}${symbol}`;
+    setDisplay(displayStr);
+    return;
+  }
+
+  if (!displayStr | displayStr === '0') {
+    if (/[/*\-+]/.test(symbol)) return;
     displayStr = '';
   }
+
   displayStr = displayStr.concat(symbol);
   setDisplay(displayStr);
 }
