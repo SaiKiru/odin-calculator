@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --calculator-body: #efefef;
+    --brand-text-color: #ca437b;
+
+    --num-btn-bg: #9d9ea7;
+    --op-btn-bg: #f04c83;
+    --del-btn-bg: #ff5050;
+    --eq-btn-bg: #2d8fff;
+    --btn-text-color: #ffffff;
+
+    --btn-highlight: #ffffff2a;
+    --btn-shade: #00000022;
+    --btn-drop-shadow: #00000022;
+
+    --calculator-highlight: #ffffffcc;
+    --calculator-shade: #b5b7c5;
+    --calculator-drop-shadow: #2832527c;
+
+    --display-bg: #afb1bd;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#calculator {
+    width: 300px;
+    padding: 24px 24px 48px 24px;
+    border-radius: 8px;
+    background-color: var(--calculator-body);
+    box-shadow:
+        0px -12px var(--calculator-shade) inset,
+        0px 4px 8px var(--calculator-highlight) inset,
+        0px 24px 48px 12px var(--calculator-drop-shadow);
+}
+
+#brand-name {
+    position: relative;
+    top: -5px;
+    margin-bottom: 0.6em;
+    user-select: none;
+
+    color: var(--brand-text-color);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+#calculator-display {
+    padding: 16px;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    background-color: var(--display-bg);
+
+    text-align: right;
+    font-size: 24px;
+    font-weight: 600;
+
+    box-shadow:
+        0px -6px 1px var(--calculator-shade),
+        0px 4px 4px var(--calculator-highlight);
+}
+
+#calculator-buttons {
+    display: grid;
+    gap: 12px 5px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#calculator-buttons button {
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow:
+        0px -4px var(--btn-shade) inset,
+        0px 2px 24px var(--btn-highlight) inset,
+        0px 4px var(--btn-drop-shadow);
+    color: var(--btn-text-color)
+}
+
+#calculator-buttons button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+.num-btn {
+    aspect-ratio: 1 / 1;
+    background-color: var(--num-btn-bg);
+}
+
+.op-btn {
+    aspect-ratio: 1 / 1;
+    background-color: var(--op-btn-bg);
+}
+
+.del-btn {
+    grid-column: 1/5;
+    background-color: var(--del-btn-bg);
+}
+
+.eq-btn {
+    grid-column: 2/4;
+    background-color: var(--eq-btn-bg);
+}
