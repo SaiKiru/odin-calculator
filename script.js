@@ -40,12 +40,24 @@ function divide(num1, num2) {
 }
 
 function operate(operation, num1, num2) {
+  let result;
+
   switch (operation) {
-    case Operation.ADD: return add(num1, num2);
-    case Operation.SUBTRACT: return subtract(num1, num2);
-    case Operation.MULTIPLY: return multiply(num1, num2);
-    case Operation.DIVIDE: return divide(num1, num2);
+    case Operation.ADD:
+      result = add(num1, num2);
+      break;
+    case Operation.SUBTRACT:
+      result = subtract(num1, num2);
+      break;
+    case Operation.MULTIPLY:
+      result = multiply(num1, num2);
+      break;
+    case Operation.DIVIDE:
+      result = divide(num1, num2);
+      break;
   }
+
+  return Math.round(result * 100) / 100;
 }
 
 function compute() {
