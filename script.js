@@ -36,6 +36,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+  if (num2 === 0) throw 'ZeroDivisionError';
   return num1 / num2;
 }
 
@@ -86,17 +87,37 @@ function handleSymbol(symbol) {
       setDisplay('Syntax Error');
       return;
     }
-    let result = compute();
-    displayStr = result.toString();
-    setDisplay(displayStr);
-    return;
+    let result;
+
+    try {
+      result = compute();
+      displayStr = result.toString();
+      setDisplay(displayStr);
+    } catch (err) {
+      if (err === 'ZeroDivisionError') {
+        displayStr = '';
+        setDisplay('Undefined');
+      };
+    } finally {
+      return;
+    }
   }
 
   if (/[/*\-+]/.test(symbol) && /[/*\-+]/.test(displayStr)) {
-    let result = compute();
-    displayStr = `${result}${symbol}`;
-    setDisplay(displayStr);
-    return;
+    let result;
+
+    try {
+      result = compute();
+      displayStr = `${result}${symbol}`;
+      setDisplay(displayStr);
+    } catch (err) {
+      if (err === 'ZeroDivisionError') {
+        displayStr = '';
+        setDisplay('Undefined');
+      }
+    } finally {
+      return;
+    }
   }
 
   if (!displayStr | displayStr === '0') {
