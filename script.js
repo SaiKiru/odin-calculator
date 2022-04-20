@@ -62,7 +62,7 @@ function operate(operation, num1, num2) {
 }
 
 function compute() {
-  let regex = /(?<=^-?\d+)(?=[/*\-+])|(?<=[/*\-+])(?=\d+$)/;
+  let regex = /(?<=^-?\d+(?:\.\d+)?)(?=[/*\-+])|(?<=[/*\-+])(?=\d+(?:\.\d+)?$)/;
   let [num1, op, num2] = displayStr.split(regex);
   num1 = parseFloat(num1);
   num2 = parseFloat(num2);
