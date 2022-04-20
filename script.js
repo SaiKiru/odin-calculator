@@ -62,6 +62,8 @@ function operate(operation, num1, num2) {
 }
 
 function compute() {
+  if (!checkSyntax(displayStr)) throw 'SyntaxError';
+
   let regex = /(?<=^-?\d+(?:\.\d+)?)(?=[/*\-+])|(?<=[/*\-+])(?=\d+(?:\.\d+)?$)/;
   let [num1, op, num2] = displayStr.split(regex);
   num1 = parseFloat(num1);
@@ -82,11 +84,6 @@ function clearDisplay() {
 
 function handleSymbol(symbol) {
   if (symbol === '=') {
-    if (!/\d+[/*\-+]\d+/.test(displayStr)) {
-      displayStr = '';
-      setDisplay('Syntax Error');
-      return;
-    }
     let result;
 
     try {
@@ -97,7 +94,10 @@ function handleSymbol(symbol) {
       if (err === 'ZeroDivisionError') {
         displayStr = '';
         setDisplay('Undefined');
-      };
+      } else if (err === 'SyntaxError') {
+        displayStr = '';
+        setDisplay('Syntax Error');
+      }
     } finally {
       return;
     }
@@ -114,6 +114,9 @@ function handleSymbol(symbol) {
       if (err === 'ZeroDivisionError') {
         displayStr = '';
         setDisplay('Undefined');
+      } else if (err === 'SyntaxError') {
+        displayStr = '';
+        setDisplay('Syntax Error');
       }
     } finally {
       return;
@@ -135,3 +138,8 @@ function setDisplay(str) {
   }
   display.textContent = str;
 }
+
+function checkSyntax(equation) {
+  let regex = /^-?\d+(?:\.\d+)?[/*\-+]-?\d+(?:\.\d+)?$|^-?\d+(?:\.\d+)?$/;
+  return regex.test(equation);
+};
