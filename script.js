@@ -81,6 +81,11 @@ function clearDisplay() {
 
 function handleSymbol(symbol) {
   if (symbol === '=') {
+    if (!/\d+[/*\-+]\d+/.test(displayStr)) {
+      displayStr = '';
+      setDisplay('Syntax Error');
+      return;
+    }
     let result = compute();
     displayStr = result.toString();
     setDisplay(displayStr);
@@ -104,7 +109,7 @@ function handleSymbol(symbol) {
 }
 
 function setDisplay(str) {
-  if (!displayStr) {
+  if (!str) {
     str = '0';
   }
   display.textContent = str;
