@@ -98,7 +98,8 @@ body {
     color: var(--btn-text-color)
 }
 
-#calculator-buttons button:active {
+#calculator-buttons button:active,
+#calculator-buttons button.active {
     transform: translateY(2px);
     box-shadow: none;
 }

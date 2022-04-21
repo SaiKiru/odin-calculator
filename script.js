@@ -26,6 +26,30 @@ calculatorButtons.forEach(button => {
   button.addEventListener('click', func);
 });
 
+document.addEventListener('keydown', event => {
+  let key = event.key;
+  let buttonId;
+  let button;
+
+  if (/\d/.test(key)) { buttonId = `#num-${key}`; }
+  else if (key === '/') { buttonId = '#op-div'; }
+  else if (key === '*') { buttonId = '#op-mult'; }
+  else if (key === '-') { buttonId = '#op-sub'; }
+  else if (key === '+') { buttonId = '#op-add'; }
+  else if (key === 'Backspace') { buttonId = '#del-btn'; }
+  else if (key === 'Enter') { buttonId = '#eq-btn'; }
+  else if (key === 'Delete') { buttonId = '#cls-btn'; }
+  else { return; }
+
+  button = document.querySelector(buttonId);
+  button.classList.add('active');
+  button.click();
+});
+
+document.addEventListener('keyup', () => {
+  calculatorButtons.forEach(button => button.classList.remove('active'));
+});
+
 function add(num1, num2) {
   return num1 + num2;
 }
