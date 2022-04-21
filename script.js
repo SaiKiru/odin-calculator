@@ -103,7 +103,7 @@ function handleSymbol(symbol) {
     }
   }
 
-  if (/[/*\-+]/.test(symbol) && /[/*\-+]/.test(displayStr)) {
+  if (/[/*\-+]/.test(symbol) && /^-?\d+(?:\.\d+)?[/*\-+]/.test(displayStr)) {
     let result;
 
     try {
