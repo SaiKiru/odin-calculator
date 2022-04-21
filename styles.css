@@ -77,6 +77,8 @@ body {
     box-shadow:
         0px -6px 1px var(--calculator-shade),
         0px 4px 4px var(--calculator-highlight);
+
+    overflow-x: auto;
 }
 
 #calculator-buttons {

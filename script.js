@@ -165,6 +165,7 @@ function setDisplay(str) {
     str = '0';
   }
   display.textContent = str;
+  display.scrollLeft = display.scrollWidth;
 }
 
 function checkSyntax(equation) {
