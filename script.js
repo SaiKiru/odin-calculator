@@ -92,11 +92,9 @@ function handleSymbol(symbol) {
       setDisplay(displayStr);
     } catch (err) {
       if (err === 'ZeroDivisionError') {
-        displayStr = '';
-        setDisplay('Undefined');
+        handleError('Undefined');
       } else if (err === 'SyntaxError') {
-        displayStr = '';
-        setDisplay('Syntax Error');
+        handleError('Syntax Error');
       }
     } finally {
       return;
@@ -112,11 +110,9 @@ function handleSymbol(symbol) {
       setDisplay(displayStr);
     } catch (err) {
       if (err === 'ZeroDivisionError') {
-        displayStr = '';
-        setDisplay('Undefined');
+        handleError('Undefined');
       } else if (err === 'SyntaxError') {
-        displayStr = '';
-        setDisplay('Syntax Error');
+        handleError('Syntax Error');
       }
     } finally {
       return;
@@ -143,3 +139,8 @@ function checkSyntax(equation) {
   let regex = /^-?\d+(?:\.\d+)?[/*\-+]-?\d+(?:\.\d+)?$|^-?\d+(?:\.\d+)?$/;
   return regex.test(equation);
 };
+
+function handleError(message = '') {
+  clearDisplay();
+  setDisplay(message);
+}
