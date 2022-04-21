@@ -15,8 +15,8 @@
     --btn-drop-shadow: #00000022;
 
     --calculator-highlight: #ffffffcc;
-    --calculator-shade: #b5b7c5;
-    --calculator-drop-shadow: #2832527c;
+    --calculator-shade: #e4d4e0;
+    --calculator-drop-shadow: #b160817c;
 
     --display-bg: #afb1bd;
 }
@@ -47,7 +47,7 @@ body {
     box-shadow:
         0px -12px var(--calculator-shade) inset,
         0px 4px 8px var(--calculator-highlight) inset,
-        0px 24px 48px 12px var(--calculator-drop-shadow);
+        0px 32px 48px 12px var(--calculator-drop-shadow);
 }
 
 #brand-name {
