@@ -13,6 +13,9 @@ calculatorButtons.forEach(button => {
   let func;
 
   switch (button.textContent) {
+    case 'DEL':
+      func = () => backspace();
+      break;
     case 'CLS':
       func = () => clearDisplay();
       break;
@@ -75,6 +78,11 @@ function compute() {
     case '*': return operate(Operation.MULTIPLY, num1, num2);
     case '/': return operate(Operation.DIVIDE, num1, num2);
   }
+}
+
+function backspace() {
+  displayStr = displayStr.slice(0, displayStr.length - 1);
+  setDisplay(displayStr);
 }
 
 function clearDisplay() {

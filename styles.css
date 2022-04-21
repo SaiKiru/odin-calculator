@@ -113,12 +113,19 @@ body {
     background-color: var(--op-btn-bg);
 }
 
-.del-btn {
-    grid-column: 1/5;
+.des-btn {
     background-color: var(--del-btn-bg);
 }
 
 .eq-btn {
     grid-column: 2/4;
     background-color: var(--eq-btn-bg);
+}
+
+#del-btn {
+    grid-column: 1 / 3;
+}
+
+#cls-btn {
+    grid-column: 3 / 5;
 }
